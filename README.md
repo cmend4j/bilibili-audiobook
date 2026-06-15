@@ -27,7 +27,7 @@
 
 ### 方式一：直接使用（推荐）
 
-1. 从 [Releases](https://github.com/YOUR_USERNAME/bilibili-audiobook/releases) 下载最新版本
+1. 从 [Releases](https://github.com/cmend4j/bilibili-audiobook/releases) 下载最新版本
 2. 解压到任意目录
 3. 双击 `B站有声书工具.exe` 运行
 
@@ -35,7 +35,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/YOUR_USERNAME/bilibili-audiobook.git
+git clone https://github.com/cmend4j/bilibili-audiobook.git
 cd bilibili-audiobook
 
 # 安装依赖
@@ -171,8 +171,7 @@ pyinstaller --onefile --windowed --name "B站有声书工具" --add-data "ffmpeg
 
 ## 联系方式
 
-- GitHub: [YOUR_USERNAME](https://github.com/YOUR_USERNAME)
-- Email: your.email@example.com
+- GitHub: [cmend4j](https://github.com/cmend4j)
 
 ---
 
