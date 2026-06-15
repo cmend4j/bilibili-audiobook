@@ -27,9 +27,11 @@
 
 ### 方式一：直接使用（推荐）
 
-1. 从 [Releases](https://github.com/cmend4j/bilibili-audiobook/releases) 下载最新版本
-2. 解压到任意目录
-3. 双击 `B站有声书工具.exe` 运行
+1. 从 [Releases](https://github.com/cmend4j/bilibili-audiobook/releases) 下载以下两个文件：
+   - `bilibili-audiobook.exe`（主程序）
+   - `ffmpeg.exe`（音频处理引擎）
+2. 将两个文件放在同一目录下
+3. 双击 `bilibili-audiobook.exe` 运行
 
 ### 方式二：从源码运行
 
@@ -94,15 +96,17 @@ python bilibili_audiobook.py
 
 ```
 bilibili-audiobook/
-├── bilibili_audiobook.py   # 主程序
-├── B站有声书工具.exe         # 打包后的可执行文件
-├── ffmpeg.exe              # 音频处理引擎
-├── config/                 # 配置目录
+├── bilibili_audiobook.py   # 主程序源码
 ├── requirements.txt        # Python依赖
 ├── README.md              # 项目说明
 ├── LICENSE                # 开源许可证
-└── .gitignore            # Git忽略文件
+├── CHANGELOG.md           # 更新日志
+├── 使用说明.txt             # 使用说明
+├── .gitignore             # Git忽略文件
+└── .github/workflows/     # CI/CD配置
 ```
+
+> 注意：`bilibili-audiobook.exe` 和 `ffmpeg.exe` 不包含在源码仓库中，请从 [Releases](https://github.com/cmend4j/bilibili-audiobook/releases) 下载。
 
 ## 开发
 
@@ -123,8 +127,11 @@ pip install -r requirements.txt
 # 安装 PyInstaller
 pip install pyinstaller
 
+# 确保ffmpeg.exe在当前目录下
+# 从 https://github.com/BtbN/FFmpeg-Builds/releases 下载ffmpeg.exe
+
 # 打包
-pyinstaller --onefile --windowed --name "B站有声书工具" --add-data "ffmpeg.exe;." bilibili_audiobook.py
+pyinstaller --onefile --windowed --name "bilibili-audiobook" --add-data "ffmpeg.exe;." bilibili_audiobook.py
 ```
 
 ## 更新日志
