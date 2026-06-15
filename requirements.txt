@@ -1,0 +1,21 @@
+# B站有声书工具依赖
+
+# 视频下载
+yt-dlp>=2024.07.07
+
+# 以下为标准库，无需安装
+# tkinter - GUI框架（Python自带）
+# subprocess - 进程管理（Python自带）
+# threading - 多线程（Python自带）
+# logging - 日志系统（Python自带）
+# json - JSON处理（Python自带）
+# re - 正则表达式（Python自带）
+# os - 操作系统接口（Python自带）
+# sys - 系统参数（Python自带）
+# glob - 文件匹配（Python自带）
+# shutil - 文件操作（Python自带）
+# pathlib - 路径处理（Python自带）
+# datetime - 日期时间（Python自带）
+
+# 开发依赖（可选）
+# pyinstaller>=6.0.0  # 打包工具

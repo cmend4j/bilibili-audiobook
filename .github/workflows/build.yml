@@ -1,0 +1,56 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install yt-dlp pyinstaller
+    
+    - name: Download ffmpeg
+      run: |
+        Invoke-WebRequest -Uri "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip" -OutFile ffmpeg.zip
+        Expand-Archive -Path ffmpeg.zip -DestinationPath ffmpeg_temp
+        Copy-Item ffmpeg_temp\ffmpeg-master-latest-win64-gpl\bin\ffmpeg.exe .
+        Remove-Item -Recurse -Force ffmpeg_temp, ffmpeg.zip
+    
+    - name: Build executable
+      run: |
+        pyinstaller --onefile --windowed --name "B站有声书工具" --add-data "ffmpeg.exe;." bilibili_audiobook.py
+    
+    - name: Create Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          dist/B站有声书工具.exe
+          README.md
+          LICENSE
+          使用说明.txt
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: bilibili-audiobook
+        path: dist/B站有声书工具.exe
